@@ -9,7 +9,7 @@ Link repository: https://gitlab.com/a.grillo22/2022_assignment3_gmp.git
 
 ## Descrizione progetto
 
-Il progetto UniBike consiste in un interfaccia web per un amministratore di gare ciclistiche dell'ateneo. L'idea è quella di memorizzare le informazioni in una base di dati riguardo i percorsi effettuati e le sfide tra i partecipanti. Dunque, l'amministratore sarà in grado di apportare modifiche alla base di dati e visualizzare tutte le informazioni archiviate in essa.
+Il progetto UniBike consiste in un'interfaccia web per un amministratore di gare ciclistiche dell'ateneo. L'idea è quella di memorizzare le informazioni in una base di dati riguardo i percorsi effettuati e le sfide tra i partecipanti. Dunque, l'amministratore sarà in grado di apportare modifiche alla base di dati e visualizzare tutte le informazioni archiviate in essa.
 
 Nella seguente immagine e nel file "Schema_ER_base_di_dati.pdf" viene rappresentato lo schema ER del progetto.
 
