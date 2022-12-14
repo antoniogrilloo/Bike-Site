@@ -26,7 +26,7 @@ public class Citta {
 		this.regione = regione;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

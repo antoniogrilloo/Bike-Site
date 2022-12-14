@@ -1,9 +1,11 @@
 package it.unimib.gmp.UniBike.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Gravel {
+@DiscriminatorValue("Gravel")
+public class Gravel extends Bici{
 	
 	private Boolean appendici;
 	private Boolean borse;

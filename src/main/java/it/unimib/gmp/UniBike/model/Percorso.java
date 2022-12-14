@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -19,6 +20,17 @@ public class Percorso {
 	private Double km;
 	private Double dislivello;
 	
+	@ManyToOne
+	private Ciclista ciclista;
+	
+	@ManyToOne
+	private Citta partenza;
+	
+	@ManyToOne
+	private Citta arrivo;
+	private String ora_p;
+	private String ora_a;
+	
 	public Percorso() { }
 	
 	public Percorso(String data, double km, double dislivello) {
@@ -27,7 +39,7 @@ public class Percorso {
 		this.dislivello = dislivello;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -65,5 +77,21 @@ public class Percorso {
 				+ ", dislivello=" + dislivello + "]";
 	}
 	
+	public String getOra_p() {
+		return ora_p;
+	}
+
+	public void setOra_p(String ora_p) {
+		this.ora_p = ora_p;
+	}
+
+	public String getOra_a() {
+		return ora_a;
+	}
+
+	public void setOra_a(String ora_a) {
+		this.ora_a = ora_a;
+	}
+
 
 }

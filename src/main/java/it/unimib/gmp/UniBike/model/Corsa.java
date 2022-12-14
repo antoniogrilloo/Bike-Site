@@ -1,9 +1,11 @@
 package it.unimib.gmp.UniBike.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Corsa {
+@DiscriminatorValue("Corsa")
+public class Corsa extends Bici {
 	
 	enum Misuratore {
 		SPIDER,

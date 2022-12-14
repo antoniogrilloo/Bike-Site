@@ -1,10 +1,14 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.util.Collection;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 @Entity
@@ -25,6 +29,16 @@ public class Ciclista {
 	private String cognome;
 	private String nascita;
 	private Disciplina disciplina;
+	
+	@ManyToMany
+	private Collection<Ciclista> sfida;
+	
+	@OneToMany(mappedBy = "ciclista")
+	private Collection<Percorso> percorso;
+	
+	@ManyToMany
+	private Collection<Bici> bici;
+	
 	
 	public Ciclista() { }
 	

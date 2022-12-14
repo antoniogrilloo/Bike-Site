@@ -1,9 +1,11 @@
 package it.unimib.gmp.UniBike.model;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-public class MountainBike {
+@DiscriminatorValue("MountainBike")
+public class MountainBike extends Bici {
 
 	private String forcella;
 	private String ammortizzatore;
