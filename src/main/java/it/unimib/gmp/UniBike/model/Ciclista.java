@@ -15,7 +15,7 @@ import jakarta.persistence.SequenceGenerator;
 @SequenceGenerator(name = "SEQUENZA_CICLISTA", sequenceName = "SEQ_CICL")
 public class Ciclista {
 	
-	enum Disciplina {
+	public enum Disciplina {
 		RIDER,
 		STRADISTA,
 		VIAGGIATORE

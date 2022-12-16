@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Index</title>
+</head>
+<body>
+	<h1>Ciclista</h1>
+	<table>
+		<tbody>
+		    <tr th:each="ciclista: ${ciclisti}">
+		        <td th:text="${ciclista.nome}"> Nome</td>
+		        <td th:text="${ciclista.cognome}"> Cognome </td>
+		    </tr>
+		</tbody>
+	</table>
+</body>
+</html>
