@@ -1,19 +1,18 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "SEQUENZA_CITTA", sequenceName = "SEQ_CITT")
 public class Citta {
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENZA_CITTA")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cit_id")
 	private Long id;
 	private String nome;
@@ -54,6 +53,24 @@ public class Citta {
 	public String toString() {
 		return "Citta [nome=" + nome + ", regione=" + regione + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Citta other = (Citta) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	
 	
 }

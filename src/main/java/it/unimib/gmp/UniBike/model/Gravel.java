@@ -10,9 +10,12 @@ public class Gravel extends Bici{
 	private Boolean appendici;
 	private Boolean borse;
 	
-	public Gravel() {}
+	public Gravel() {
+		super();
+	}
 	
-	public Gravel(Boolean appendici, Boolean borse) {
+	public Gravel(String marca, String modello, String anno, Boolean appendici, Boolean borse) {
+		super(marca, modello, anno);
 		this.appendici = appendici;
 		this.borse = borse;
 	}

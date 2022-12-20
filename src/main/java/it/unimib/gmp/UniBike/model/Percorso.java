@@ -1,19 +1,19 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name="SEQUENZA_PERCORSO", sequenceName="SEQ_PERC")
 public class Percorso {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENZA_PERCORSO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "p_id")
 	private Long id;
 	private String data;
@@ -77,12 +77,28 @@ public class Percorso {
 				+ ", dislivello=" + dislivello + "]";
 	}
 	
+	public Citta getPartenza() {
+		return partenza;
+	}
+
+	public void setPartenza(Citta partenza) {
+		this.partenza = partenza;
+	}
+
 	public String getOra_p() {
 		return ora_p;
 	}
 
 	public void setOra_p(String ora_p) {
 		this.ora_p = ora_p;
+	}
+	
+	public Citta getArrivo() {
+		return arrivo;
+	}
+
+	public void setArrivo(Citta arrivo) {
+		this.arrivo = arrivo;
 	}
 
 	public String getOra_a() {
@@ -93,5 +109,31 @@ public class Percorso {
 		this.ora_a = ora_a;
 	}
 
+	public Ciclista getCiclista() {
+		return ciclista;
+	}
+
+	public void setCiclista(Ciclista ciclista) {
+		this.ciclista = ciclista;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Percorso other = (Percorso) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	
 
 }

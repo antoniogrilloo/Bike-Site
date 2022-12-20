@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("Corsa")
 public class Corsa extends Bici {
 	
-	enum Misuratore {
+	public enum Misuratore {
 		SPIDER,
 		PEDIVELLE,
 		PEDALI

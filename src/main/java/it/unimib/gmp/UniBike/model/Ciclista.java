@@ -1,18 +1,20 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
-@SequenceGenerator(name = "SEQUENZA_CICLISTA", sequenceName = "SEQ_CICL")
 public class Ciclista {
 	
 	public enum Disciplina {
@@ -22,7 +24,7 @@ public class Ciclista {
 	};
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENZA_CICLISTA")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "cic_id")
 	private Long id;
 	private String nome;
@@ -30,23 +32,39 @@ public class Ciclista {
 	private String nascita;
 	private Disciplina disciplina;
 	
-	@ManyToMany
+	@ManyToMany(
+		cascade = {
+				CascadeType.PERSIST, 
+				CascadeType.MERGE
+		}
+	)
 	private Collection<Ciclista> sfida;
 	
 	@OneToMany(mappedBy = "ciclista")
 	private Collection<Percorso> percorso;
 	
-	@ManyToMany
+	@ManyToMany(
+		cascade = {
+			CascadeType.MERGE
+		}
+	)
 	private Collection<Bici> bici;
 	
 	
-	public Ciclista() { }
+	public Ciclista() {
+		this.bici = new ArrayList<>();
+		this.percorso = new ArrayList<>();
+		this.sfida = new ArrayList<>();
+	}
 	
 	public Ciclista(String nome, String cognome, String nascita, Disciplina disciplina) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.nascita = nascita;
 		this.disciplina = disciplina;
+		this.bici = new ArrayList<>();
+		this.percorso = new ArrayList<>();
+		this.sfida = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -88,13 +106,42 @@ public class Ciclista {
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
+	
+	public void addSfidante(Ciclista c) {
+		this.sfida.add(c);
+		if(!c.sfida.contains(this)) {
+			c.sfida.add(this);
+		}
+	}
 
-	@Override
-	public String toString() {
-		return "Ciclista [nome=" + nome + ", cognome=" + cognome + ", nascita=" + nascita
-				+ ", disciplina=" + disciplina + "]";
+	public void addBici(Bici b) {
+		this.bici.add(b);
+		if(!b.getCiclisti().contains(this)) {
+			b.getCiclisti().add(this);
+		}
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Ciclista [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", nascita=" + nascita
+				+ ", disciplina=" + disciplina + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Ciclista other = (Ciclista) obj;
+		return Objects.equals(id, other.id);
+	}
 
 }
