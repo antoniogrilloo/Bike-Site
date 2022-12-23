@@ -1,5 +1,6 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
@@ -7,12 +8,13 @@ import java.util.Objects;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Ciclista {
@@ -29,7 +31,8 @@ public class Ciclista {
 	private Long id;
 	private String nome;
 	private String cognome;
-	private String nascita;
+	@Temporal(TemporalType.DATE)
+	private Date nascita;
 	private Disciplina disciplina;
 	
 	@ManyToMany(
@@ -50,14 +53,13 @@ public class Ciclista {
 	)
 	private Collection<Bici> bici;
 	
-	
 	public Ciclista() {
 		this.bici = new ArrayList<>();
 		this.percorso = new ArrayList<>();
 		this.sfida = new ArrayList<>();
 	}
 	
-	public Ciclista(String nome, String cognome, String nascita, Disciplina disciplina) {
+	public Ciclista(String nome, String cognome, Date nascita, Disciplina disciplina) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.nascita = nascita;
@@ -91,11 +93,11 @@ public class Ciclista {
 		this.cognome = cognome;
 	}
 
-	public String getNascita() {
+	public Date getNascita() {
 		return nascita;
 	}
 
-	public void setNascita(String nascita) {
+	public void setNascita(Date nascita) {
 		this.nascita = nascita;
 	}
 

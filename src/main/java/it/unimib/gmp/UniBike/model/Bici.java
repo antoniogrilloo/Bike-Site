@@ -3,6 +3,7 @@ package it.unimib.gmp.UniBike.model;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import java.time.Year;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,7 +30,8 @@ public class Bici {
 	private Long id;
 	private String marca;
 	private String modello;
-	private String anno;
+	//@Temporal(TemporalType.DATE)
+	private Year anno;
 	
 	@ManyToMany(
 		cascade = {
@@ -43,7 +45,7 @@ public class Bici {
 		this.ciclisti = new ArrayList<>();
 	}
 	
-	public Bici(String marca, String modello, String anno) {
+	public Bici(String marca, String modello, Year anno) {
 		this();
 		this.marca = marca;
 		this.modello = modello;
@@ -74,11 +76,11 @@ public class Bici {
 		this.modello = modello;
 	}
 
-	public String getAnno() {
+	public Year getAnno() {
 		return anno;
 	}
 
-	public void setAnno(String anno) {
+	public void setAnno(Year anno) {
 		this.anno = anno;
 	}
 	
@@ -111,7 +113,4 @@ public class Bici {
 		Bici other = (Bici) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }

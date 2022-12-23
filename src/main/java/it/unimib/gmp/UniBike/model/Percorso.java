@@ -1,5 +1,7 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 public class Percorso {
@@ -16,7 +20,8 @@ public class Percorso {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "p_id")
 	private Long id;
-	private String data;
+	@Temporal(TemporalType.DATE)
+	private Date data;
 	private Double km;
 	private Double dislivello;
 	
@@ -25,15 +30,17 @@ public class Percorso {
 	
 	@ManyToOne
 	private Citta partenza;
-	
 	@ManyToOne
 	private Citta arrivo;
-	private String ora_p;
-	private String ora_a;
+	
+	@Temporal(TemporalType.TIME)
+	private Time ora_p;
+	@Temporal(TemporalType.TIME)
+	private Time ora_a;
 	
 	public Percorso() { }
 	
-	public Percorso(String data, double km, double dislivello) {
+	public Percorso(Date data, double km, double dislivello) {
 		this.data = data;
 		this.km = km;
 		this.dislivello = dislivello;
@@ -47,11 +54,11 @@ public class Percorso {
 		this.id = id;
 	}
 
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
@@ -74,7 +81,7 @@ public class Percorso {
 	@Override
 	public String toString() {
 		return "Percorso [data=" + data + ", km=" + km
-				+ ", dislivello=" + dislivello + "]";
+				+ ", dislivello=" + dislivello + " partenza=" + ora_p + "]";
 	}
 	
 	public Citta getPartenza() {
@@ -85,11 +92,12 @@ public class Percorso {
 		this.partenza = partenza;
 	}
 
-	public String getOra_p() {
+	public Time getOra_p() {
+		
 		return ora_p;
 	}
 
-	public void setOra_p(String ora_p) {
+	public void setOra_p(Time ora_p) {
 		this.ora_p = ora_p;
 	}
 	
@@ -101,11 +109,11 @@ public class Percorso {
 		this.arrivo = arrivo;
 	}
 
-	public String getOra_a() {
+	public Time getOra_a() {
 		return ora_a;
 	}
 
-	public void setOra_a(String ora_a) {
+	public void setOra_a(Time ora_a) {
 		this.ora_a = ora_a;
 	}
 
@@ -133,7 +141,4 @@ public class Percorso {
 		Percorso other = (Percorso) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	
-
 }

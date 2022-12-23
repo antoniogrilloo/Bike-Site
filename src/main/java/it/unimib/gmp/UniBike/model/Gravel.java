@@ -1,5 +1,7 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.time.Year;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -14,7 +16,7 @@ public class Gravel extends Bici{
 		super();
 	}
 	
-	public Gravel(String marca, String modello, String anno, Boolean appendici, Boolean borse) {
+	public Gravel(String marca, String modello, Year anno, Boolean appendici, Boolean borse) {
 		super(marca, modello, anno);
 		this.appendici = appendici;
 		this.borse = borse;
