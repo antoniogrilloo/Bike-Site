@@ -32,7 +32,7 @@ public class Percorso {
 	private Citta partenza;
 	@ManyToOne
 	private Citta arrivo;
-	
+
 	@Temporal(TemporalType.TIME)
 	private Time ora_p;
 	@Temporal(TemporalType.TIME)
@@ -41,17 +41,13 @@ public class Percorso {
 	public Percorso() { }
 	
 	public Percorso(Date data, double km, double dislivello) {
-		this.data = data;
-		this.km = km;
-		this.dislivello = dislivello;
+		this.setData(data);
+		this.setKm(km);
+		this.setDislivello(dislivello);
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Date getData() {
@@ -93,7 +89,6 @@ public class Percorso {
 	}
 
 	public Time getOra_p() {
-		
 		return ora_p;
 	}
 

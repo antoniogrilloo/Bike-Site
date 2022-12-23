@@ -18,8 +18,8 @@ public class Gravel extends Bici{
 	
 	public Gravel(String marca, String modello, Year anno, Boolean appendici, Boolean borse) {
 		super(marca, modello, anno);
-		this.appendici = appendici;
-		this.borse = borse;
+		this.setAppendici(appendici);
+		this.setBorse(borse);
 	}
 	
 	public Boolean getAppendici() {
@@ -40,7 +40,7 @@ public class Gravel extends Bici{
 	
 	@Override
 	public String toString() {
-		return "Gravel [appendici=" + appendici + ", borse=" + borse + "]";
+		return "[" + super.toString() + " Gravel [appendici=" + appendici + ", borse=" + borse + "]]";
 	}
 	
 }

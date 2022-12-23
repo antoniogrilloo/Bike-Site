@@ -37,7 +37,8 @@ public class Bici {
 		cascade = {
 			CascadeType.PERSIST, 
 			CascadeType.MERGE
-		}
+		},
+		mappedBy = "bici"		
 	)
 	private Collection<Ciclista> ciclisti;
 
@@ -47,17 +48,13 @@ public class Bici {
 	
 	public Bici(String marca, String modello, Year anno) {
 		this();
-		this.marca = marca;
-		this.modello = modello;
-		this.anno = anno;
+		this.setMarca(marca);
+		this.setModello(modello);
+		this.setAnno(anno);
 	}
 
 	public long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getMarca() {

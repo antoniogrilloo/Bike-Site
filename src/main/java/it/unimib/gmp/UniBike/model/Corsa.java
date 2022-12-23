@@ -19,8 +19,8 @@ public class Corsa extends Bici {
 	public Corsa() {}
 	
 	public Corsa(Misuratore misuratore, Integer ruote) {
-		this.misuratore = misuratore;
-		this.ruote = ruote;
+		this.setMisuratore(misuratore);
+		this.setRuote(ruote);
 	}
 	
 	public Misuratore getMisuratore() {
@@ -41,7 +41,7 @@ public class Corsa extends Bici {
 
 	@Override
 	public String toString() {
-		return "Corsa [misuratore=" + misuratore + ", ruote=" + ruote + "]";
+		return "[" + super.toString() + " Corsa [misuratore=" + misuratore + ", ruote=" + ruote + "]";
 	}
 	
 }

@@ -21,16 +21,12 @@ public class Citta {
 	public Citta() { }
 	
 	public Citta(String nome, String regione) {
-		this.nome = nome;
-		this.regione = regione;
+		this.setNome(nome);
+		this.setRegione(regione);
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -70,7 +66,4 @@ public class Citta {
 		Citta other = (Citta) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
 }

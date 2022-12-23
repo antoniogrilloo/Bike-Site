@@ -11,8 +11,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -41,9 +43,21 @@ public class Ciclista {
 				CascadeType.MERGE
 		}
 	)
+	@JoinTable(
+		name = "sfide_ciclisti",
+		joinColumns = {
+			@JoinColumn(name = "cic1_id")
+		},
+		inverseJoinColumns = {
+			@JoinColumn(name = "cic2_id")
+		}
+	)
 	private Collection<Ciclista> sfida;
-	
-	@OneToMany(mappedBy = "ciclista")
+
+	@OneToMany(
+			mappedBy = "ciclista",
+			cascade = CascadeType.REMOVE
+	)
 	private Collection<Percorso> percorso;
 	
 	@ManyToMany(
@@ -52,29 +66,23 @@ public class Ciclista {
 		}
 	)
 	private Collection<Bici> bici;
-	
+
 	public Ciclista() {
 		this.bici = new ArrayList<>();
 		this.percorso = new ArrayList<>();
 		this.sfida = new ArrayList<>();
 	}
-	
+
 	public Ciclista(String nome, String cognome, Date nascita, Disciplina disciplina) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.nascita = nascita;
-		this.disciplina = disciplina;
-		this.bici = new ArrayList<>();
-		this.percorso = new ArrayList<>();
-		this.sfida = new ArrayList<>();
+		this();
+		this.setNome(nome);
+		this.setCognome(cognome);
+		this.setNascita(nascita);
+		this.setDisciplina(disciplina);
 	}
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -123,6 +131,10 @@ public class Ciclista {
 		}
 	}
 	
+	public Collection<Ciclista> getSfida() {
+		return sfida;
+	}
+
 	@Override
 	public String toString() {
 		return "Ciclista [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", nascita=" + nascita

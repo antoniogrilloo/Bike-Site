@@ -26,6 +26,7 @@ public class CiclistaController {
 		//ciclisti.add(new Ciclista("Prova", "cognome", "1111111", Disciplina.RIDER));
 		//ciclistaRepository.save(ciclisti.get(0));
 		//ciclistaRepository.flush();
+		//System.out.println(ciclisti.get(0).getSfida());
 		
 		maw.addObject("ciclisti", ciclisti);
 		maw.setViewName("index");

@@ -13,8 +13,8 @@ public class MountainBike extends Bici {
 	public MountainBike() { }
 	
 	public MountainBike(String forcella, String ammortizzatore) {
-		this.forcella = forcella;
-		this.ammortizzatore = ammortizzatore;
+		this.setForcella(forcella);
+		this.setAmmortizzatore(ammortizzatore);
 	}
 	
 	public String getForcella() {
@@ -35,7 +35,7 @@ public class MountainBike extends Bici {
 	
 	@Override
 	public String toString() {
-		return "MountainBike [forcella=" + forcella + ", ammortizzatore=" + ammortizzatore + "]";
+		return "[" + super.toString() + " MountainBike [forcella=" + forcella + ", ammortizzatore=" + ammortizzatore + "]";
 	}
 	
 }
