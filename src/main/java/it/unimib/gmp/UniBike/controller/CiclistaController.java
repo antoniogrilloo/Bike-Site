@@ -1,9 +1,11 @@
 package it.unimib.gmp.UniBike.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import it.unimib.gmp.UniBike.model.Ciclista;
@@ -23,13 +25,21 @@ public class CiclistaController {
 	public ModelAndView index() {
 		ModelAndView maw = new ModelAndView();
 		List<Ciclista> ciclisti = ciclistaRepository.findAll();
-		//ciclisti.add(new Ciclista("Prova", "cognome", "1111111", Disciplina.RIDER));
-		//ciclistaRepository.save(ciclisti.get(0));
-		//ciclistaRepository.flush();
-		//System.out.println(ciclisti.get(0).getSfida());
 		
 		maw.addObject("ciclisti", ciclisti);
 		maw.setViewName("index");
 		return maw;
 	}
+	
+	@GetMapping("/ciclista/{idCiclista}")
+	public ModelAndView infoCiclista(@PathVariable("idCiclista") Long idCiclista) {
+		ModelAndView maw = new ModelAndView();
+		Optional<Ciclista> c = this.ciclistaRepository.findById(idCiclista);
+		// Eventuali eccezioni o gestione con isPresent
+		maw.addObject("ciclista", c.get());
+		maw.setViewName("ciclista");
+		return maw;
+	}
+	
+	
 }

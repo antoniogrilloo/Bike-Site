@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Ciclisti</title>
+	<title>Nuova Bici</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link rel="stylesheet" href="mystyle.css">
+	
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbarcc">
@@ -15,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Ciclisti</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Ciclisti</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="bici.html">Bici</a>
@@ -26,14 +27,25 @@
     </nav>
     
     <div id="main">
-    	<h1 class="text">Ciclisti</h1>
-    	<a type="button" class="btn btn-primary bott" href="nuovoCiclista.html">Nuovo</a>
-    	<a type="button" class="btn btn-primary bott" href="ricercaPercorso.html">Cerca percorso</a>
+    	<h1 class="text">Fabio Nonnis</h1>
     </div>
     
-	<div class= "scrollable">
-		<a class="card btnHome" href="ciclista.html" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</a>
+    <h2 class="text1">Bici:</h2>
+    <div class="formCard">
+		<form autocomplete="off">
+			<div class="form-group hidden">
+		   		<label for=""></label>
+		    	<input type="hidden" class="form-control input_form" id="form_ID" placeholder="">
+	  		</div>
+	  		<div class="autocomplete">
+    			<input id="myInput" type="text" name="bici" placeholder="Bici">
+  			</div>
+	  		<button type="submit" class="btn btn-primary submitDisc"><b>Submit</b></button>
+		</form>
 	</div>
 	
+	<script src="scriptAssociaBici.js">
+	</script>
+
 </body>
 </html>

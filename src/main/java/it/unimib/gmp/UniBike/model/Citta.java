@@ -47,7 +47,7 @@ public class Citta {
 
 	@Override
 	public String toString() {
-		return "Citta [nome=" + nome + ", regione=" + regione + "]";
+		return nome + " (" + regione + ")";
 	}
 
 	@Override

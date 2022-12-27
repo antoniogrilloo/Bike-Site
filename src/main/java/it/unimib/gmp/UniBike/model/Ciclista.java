@@ -130,6 +130,14 @@ public class Ciclista {
 			c.sfida.add(this);
 		}
 	}
+	
+	public Collection<Percorso> getPercorso() {
+		return percorso;
+	}
+
+	public void setPercorso(Collection<Percorso> percorso) {
+		this.percorso = percorso;
+	}
 
 	public void addBici(Bici b) {
 		this.bici.add(b);

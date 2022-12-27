@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Ciclisti</title>
+	<title>Nuovo Ciclista</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 	<link rel="stylesheet" href="mystyle.css">
 </head>
@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Ciclisti</a>
+              <a class="nav-link active" aria-current="page" href="index.html">Ciclisti</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="bici.html">Bici</a>
@@ -24,16 +24,32 @@
         </div>
       </div>
     </nav>
-    
-    <div id="main">
-    	<h1 class="text">Ciclisti</h1>
-    	<a type="button" class="btn btn-primary bott" href="nuovoCiclista.html">Nuovo</a>
-    	<a type="button" class="btn btn-primary bott" href="ricercaPercorso.html">Cerca percorso</a>
-    </div>
-    
-	<div class= "scrollable">
-		<a class="card btnHome" href="ciclista.html" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</a>
-	</div>
 	
+	<div id="main">
+    	<h1 class="text">Nuovo Ciclista</h1>
+    </div>
+	
+	<div class="formModPercCard">
+		<form class="float elForm">
+			<label class="text1Form">Nome: </label>
+			<br>
+			<input type="text" class="form-control elForm" name="nome" placeholder="Nome">
+			<label class="text1Form">Cognome:</label>
+			<br>
+			<input type="text" class="form-control elForm" name="cognome" placeholder="Cognome">
+			<label class="text1Form">Disciplina:</label>
+			<br>
+			<select id ="dinForm" class="form-control input_form elForm" onchange="myFunction()">
+	    		<option>STRADISTA</option>
+	    		<option>RIDER</option>
+	    		<option>VIAGGIATORE</option>
+	    	</select>
+			<label class="text1Form">Data: </label>
+			<br>
+			<input type="date" class="form-control date elForm" name="dataPercorso" value="2018-07-22"min="2018-01-01" max="2018-12-31">
+			<br>
+			<button type="submit" class="btn btn-primary submit">Crea</button>
+		</form>
+	</div>
 </body>
 </html>
