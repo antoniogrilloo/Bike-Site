@@ -16,12 +16,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.DiscriminatorType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Bici")
+@Table(
+		uniqueConstraints = { 
+				@UniqueConstraint(columnNames = { "marca", "modello", "anno" }) 
+		}
+)
 public class Bici {
 	
 	@Id

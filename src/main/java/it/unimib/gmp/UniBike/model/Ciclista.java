@@ -14,11 +14,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(
+	uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "nome", "cognome", "nascita" }) 
+	}
+)
 public class Ciclista {
 	
 	public enum Disciplina {
