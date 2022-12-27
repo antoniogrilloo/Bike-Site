@@ -32,7 +32,7 @@
     </div>
     
 	<div class= "scrollable">
-		<a class="card btnHome" href="ciclista.html" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</a>
+		<a class="card btnHome" th:href="@{/ciclista/{id}(id = ${ciclista.id})}" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</a>
 	</div>
 	
 </body>
