@@ -125,10 +125,15 @@ public class Ciclista {
 	}
 	
 	public void addSfidante(Ciclista c) {
-		this.sfida.add(c);
+		if(!this.sfida.contains(c))
+			this.sfida.add(c);
 		if(!c.sfida.contains(this)) {
 			c.sfida.add(this);
 		}
+	}
+	
+	public Collection<Bici> getBici() {
+		return bici;
 	}
 	
 	public Collection<Percorso> getPercorso() {
@@ -140,10 +145,10 @@ public class Ciclista {
 	}
 
 	public void addBici(Bici b) {
-		this.bici.add(b);
-		if(!b.getCiclisti().contains(this)) {
+		if(!this.bici.contains(b))
+			this.bici.add(b);
+		if(!b.getCiclisti().contains(this))
 			b.getCiclisti().add(this);
-		}
 	}
 	
 	public Collection<Ciclista> getSfida() {
@@ -158,7 +163,7 @@ public class Ciclista {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(cognome, nascita, nome);
 	}
 
 	@Override
@@ -170,7 +175,8 @@ public class Ciclista {
 		if (getClass() != obj.getClass())
 			return false;
 		Ciclista other = (Ciclista) obj;
-		return Objects.equals(id, other.id);
+		return cognome.equals(other.cognome) && nascita.equals(other.nascita)
+				&& nome.equals(other.nome);
 	}
 
 }

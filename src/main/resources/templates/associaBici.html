@@ -3,8 +3,7 @@
 <head>
 	<title>Nuova Bici</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<link rel="stylesheet" href="mystyle.css">
-	
+	<link rel="stylesheet" href="/mystyle.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbarcc">
@@ -16,10 +15,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Ciclisti</a>
+              <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bici.html">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
             </li>
           </ul>
         </div>
@@ -27,24 +26,25 @@
     </nav>
     
     <div id="main">
-    	<h1 class="text">Fabio Nonnis</h1>
+    	<h1 class="text" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</h1>
     </div>
     
     <h2 class="text1">Bici:</h2>
     <div class="formCard">
-		<form autocomplete="off">
+		<form autocomplete="off" th:method="POST" th:action="@{/associaBici/{id}(id = ${ciclista.id})}">
 			<div class="form-group hidden">
 		   		<label for=""></label>
 		    	<input type="hidden" class="form-control input_form" id="form_ID" placeholder="">
 	  		</div>
-	  		<div class="autocomplete">
-    			<input id="myInput" type="text" name="bici" placeholder="Bici">
+	  		<div class="form-group">
+    			<select class="form-control input_form" name = "idBici">
+	    			<option th:each="b: ${bici}" th:value="${b.id}" th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}">Bici</option>
+	    		</select>
   			</div>
 	  		<button type="submit" class="btn btn-primary submitDisc"><b>Submit</b></button>
 		</form>
 	</div>
-	
-	<script src="scriptAssociaBici.js">
+	<script src="/scriptAssociaBici.js">
 	</script>
 
 </body>
