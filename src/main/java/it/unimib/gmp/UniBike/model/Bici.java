@@ -98,7 +98,7 @@ public class Bici {
 
 	@Override
 	public String toString() {
-		return "Bici [marca=" + marca + ", modello=" + modello + ", anno=" + anno + " classe=" + this.getClass() + "]";
+		return marca + " " + modello + " " + anno;
 	}
 
 	@Override

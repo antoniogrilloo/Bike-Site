@@ -1,5 +1,7 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.time.Year;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -12,11 +14,16 @@ public class MountainBike extends Bici {
 	
 	public MountainBike() { }
 	
-	public MountainBike(String forcella, String ammortizzatore) {
+	public MountainBike(String marca, String modello, Year anno, String forcella, String ammortizzatore) {
+		super(marca, modello, anno);
 		this.setForcella(forcella);
 		this.setAmmortizzatore(ammortizzatore);
 	}
 	
+	public MountainBike(String marca, String modello, Integer anno, String forcella, String ammortizzatore) {
+		this(marca, modello, Year.parse(anno.toString()), forcella, ammortizzatore);
+	}
+
 	public String getForcella() {
 		return forcella;
 	}
@@ -35,7 +42,7 @@ public class MountainBike extends Bici {
 	
 	@Override
 	public String toString() {
-		return "[" + super.toString() + " MountainBike [forcella=" + forcella + ", ammortizzatore=" + ammortizzatore + "]";
+		return super.toString() + " tipo: MountainBike";
 	}
 	
 }

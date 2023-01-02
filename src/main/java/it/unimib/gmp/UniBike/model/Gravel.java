@@ -22,6 +22,10 @@ public class Gravel extends Bici{
 		this.setBorse(borse);
 	}
 	
+	public Gravel(String marca, String modello, Integer anno, Boolean appendici, Boolean borse) {
+		this(marca, modello, Year.parse(anno.toString()), appendici, borse);
+	}
+	
 	public Boolean getAppendici() {
 		return appendici;
 	}
@@ -40,7 +44,7 @@ public class Gravel extends Bici{
 	
 	@Override
 	public String toString() {
-		return "[" + super.toString() + " Gravel [appendici=" + appendici + ", borse=" + borse + "]]";
+		return super.toString() + " tipo: Gravel";
 	}
 	
 }

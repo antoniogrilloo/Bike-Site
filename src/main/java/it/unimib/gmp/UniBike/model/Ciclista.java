@@ -47,7 +47,7 @@ public class Ciclista {
 	@ManyToMany(
 		cascade = {
 				CascadeType.PERSIST, 
-				CascadeType.MERGE				
+				CascadeType.MERGE
 		}
 	)
 	@JoinTable(
@@ -139,28 +139,28 @@ public class Ciclista {
 			c.sfida.remove(this);
 		}
 	}
-	
+
 	public void deletePercorso(Percorso p) {
 		if(percorso.contains(p))
 			this.percorso.remove(p);
 		if(p.getCiclista().equals(this))
-			p.setCiclista(null);	
+			p.setCiclista(null);
 	}
-	
+
 	public void deleteBici(Bici b) {
 		if(bici.contains(b))
 			this.bici.remove(b);
 		if(b.getCiclisti().contains(this))
-			b.getCiclisti().remove(this);	
+			b.getCiclisti().remove(this);
 	}
-	
+
 	public boolean isSelected(String d) {
 		Disciplina disciplina = Disciplina.valueOf(d);
 		if(disciplina == this.getDisciplina())
 			return true;
 		return false;
 	}
-	
+
 	public Collection<Percorso> getPercorso() {
 		return percorso;
 	}
@@ -170,12 +170,11 @@ public class Ciclista {
 	}
 
 	public void addBici(Bici b) {
-		this.bici.add(b);
-		if(!b.getCiclisti().contains(this)) {
+		if(!this.bici.contains(b))
+			this.bici.add(b);
+		if(!b.getCiclisti().contains(this))
 			b.getCiclisti().add(this);
-		}
 	}
-	
 	
 	public Collection<Ciclista> getSfida() {
 		return sfida;
@@ -209,10 +208,8 @@ public class Ciclista {
 		if (getClass() != obj.getClass())
 			return false;
 		Ciclista other = (Ciclista) obj;
-		return Objects.equals(cognome, other.cognome) && Objects.equals(nascita, other.nascita)
-				&& Objects.equals(nome, other.nome);
+		return cognome.equals(other.cognome) && nascita.equals(other.nascita)
+				&& nome.equals(other.nome);
 	}
-
-	
 
 }

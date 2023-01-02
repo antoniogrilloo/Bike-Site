@@ -1,5 +1,7 @@
 package it.unimib.gmp.UniBike.model;
 
+import java.time.Year;
+
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -18,11 +20,16 @@ public class Corsa extends Bici {
 	
 	public Corsa() {}
 	
-	public Corsa(Misuratore misuratore, Integer ruote) {
+	public Corsa(String marca, String modello, Year anno, Misuratore misuratore, Integer ruote) {
+		super(marca, modello, anno);
 		this.setMisuratore(misuratore);
 		this.setRuote(ruote);
 	}
 	
+	public Corsa(String marca, String modello, Integer anno, Misuratore misuratore, Integer ruote) {
+		this(marca, modello, Year.parse(anno.toString()), misuratore, ruote);
+	}
+
 	public Misuratore getMisuratore() {
 		return misuratore;
 	}
@@ -41,7 +48,7 @@ public class Corsa extends Bici {
 
 	@Override
 	public String toString() {
-		return "[" + super.toString() + " Corsa [misuratore=" + misuratore + ", ruote=" + ruote + "]";
+		return super.toString() + " tipo: Corsa";
 	}
 	
 }
