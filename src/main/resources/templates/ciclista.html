@@ -19,7 +19,7 @@
               <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bici.html">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
             </li>
           </ul>
         </div>
@@ -96,20 +96,9 @@
 				</td>
 			</tr>
 		</table>
-	
-		<!--<div th:each="percorso: ${ciclista.percorso}">
-			<div class="child-s3 card btnHome">
-				<div th:text="${percorso.partenza} + ' - ' + ${percorso.arrivo}"></div>
-				<div class="textPerc" th:text="'Data: ' + ${percorso.data} + ' | Lunghezza: ' + ${percorso.km} + ' | Dislivello: ' + ${percorso.dislivello} + ' | Ora partenza: ' + ${percorso.ora_p} + ' | Ora arrivo: ' + ${percorso.ora_a}">Dati percorso</div>
-			</div>
-			<div class="child-s4"><a class="card btnHomeRemove change" href="modificaPercorso.html"><i class="fa-solid fa-pen-to-square"></i></a></div>
-			<div class="child-s4"><a class="card btnHomeRemove remove" href="https://example.com/"><i class="fa-solid fa-trash"></i></a></div>
-		</div>		
-	-->
-	
 	</div>
 		
-	<h2 class="text1">Bici <a type="button" class="btn btn-primary noFog" th:href="@{/ciclista/associaBici/{id}(id = ${ciclista.id})}"><b>+</b></a></h2>
+	<h2 class="text1">Bici <a type="button" class="btn btn-primary noFog" th:href="@{/associaBici/{id}(id = ${ciclista.id})}"><b>+</b></a></h2>
 	<div class= "scrollable">
 	
 	<table class="tabCic" th:each="bici: ${ciclista.bici}">

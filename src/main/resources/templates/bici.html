@@ -30,7 +30,14 @@
     	<a type="button"  href= "/bici/nuovaBici"class="btn btn-primary bott">Nuova</a>
     </div>
 		<div class= "scrollable">
-    		<a class="card btnHome" th:each="b: ${bici}" th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}">Nome Cognome</a>
+    		<a class="card btnHome" th:each="b: ${bici}">
+    			<span th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}"> Bici </span>
+    			<span th:switch="${#strings.arraySplit(b.class, '.')[5]}">
+	    			<span th:case="'Gravel'" th:text="Gravel">Gravel</span>
+	    			<span th:case="'MountainBike'" th:text="MountainBike">MB</span>
+	    			<span th:case="'Corsa'" th:text="Corsa">C</span>
+    			</span>
+    		</a>
 		</div>
 </body>
 </html>
