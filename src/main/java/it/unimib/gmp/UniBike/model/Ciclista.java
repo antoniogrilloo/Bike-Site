@@ -47,7 +47,7 @@ public class Ciclista {
 	@ManyToMany(
 		cascade = {
 				CascadeType.PERSIST, 
-				CascadeType.MERGE
+				CascadeType.MERGE				
 		}
 	)
 	@JoinTable(
@@ -125,10 +125,40 @@ public class Ciclista {
 	}
 	
 	public void addSfidante(Ciclista c) {
-		this.sfida.add(c);
+		if(!sfida.contains(c))
+			this.sfida.add(c);
 		if(!c.sfida.contains(this)) {
 			c.sfida.add(this);
 		}
+	}
+	
+	public void deleteSfida(Ciclista c) {
+		if(sfida.contains(c))
+			this.sfida.remove(c);
+		if(c.sfida.contains(this)) {
+			c.sfida.remove(this);
+		}
+	}
+	
+	public void deletePercorso(Percorso p) {
+		if(percorso.contains(p))
+			this.percorso.remove(p);
+		if(p.getCiclista().equals(this))
+			p.setCiclista(null);	
+	}
+	
+	public void deleteBici(Bici b) {
+		if(bici.contains(b))
+			this.bici.remove(b);
+		if(b.getCiclisti().contains(this))
+			b.getCiclisti().remove(this);	
+	}
+	
+	public boolean isSelected(String d) {
+		Disciplina disciplina = Disciplina.valueOf(d);
+		if(disciplina == this.getDisciplina())
+			return true;
+		return false;
 	}
 	
 	public Collection<Percorso> getPercorso() {
@@ -146,8 +176,17 @@ public class Ciclista {
 		}
 	}
 	
+	
 	public Collection<Ciclista> getSfida() {
 		return sfida;
+	}
+
+	public Collection<Bici> getBici() {
+		return bici;
+	}
+
+	public void setBici(Collection<Bici> bici) {
+		this.bici = bici;
 	}
 
 	@Override
@@ -158,7 +197,7 @@ public class Ciclista {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(cognome, nascita, nome);
 	}
 
 	@Override
@@ -170,7 +209,10 @@ public class Ciclista {
 		if (getClass() != obj.getClass())
 			return false;
 		Ciclista other = (Ciclista) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(cognome, other.cognome) && Objects.equals(nascita, other.nascita)
+				&& Objects.equals(nome, other.nome);
 	}
+
+	
 
 }
