@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Ciclisti</a>
+              <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="bici.html">Bici</a>
@@ -31,18 +31,13 @@
     
     
     <div class="formCardRicPerc">
-		<form class="float">
+		<form class="float" th:action="@{/ricercaPercorso}" method="POST">
 			<table>
 				<tr>
 			        <td class = "col" scope="col">
 			        	<div class="form-group">
 					    	<h2 class="text1Form">Nome</h2>
 					    </div>
-					</td>
-			        <td class = "col" scope="col">
-			        	<div class="form-group">
-							<h2 class="text1Form">Cognome</h2>
-					  	</div>
 					</td>
 			    	<td class = "col" scope="col">
 			    		<div class="form-group">
@@ -55,18 +50,16 @@
 			  	<tr>
 			  		<td class = "col" scope="col">
 			        	<div class="form-group">
-					    	<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome">  			
-					    </div>
-					</td>
-					<td class = "col" scope="col">
-			        	<div class="form-group">
-					    	<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cognome">
+					    	<select class="form-control input_form" name="ciclista" th:required="required">
+								<option th:each="c: ${ciclisti}" th:value="${c.id}" th:text="${c.nome} + ' ' + ${c.cognome}">Ciclista</option>
+							</select>
 					  	</div>
 					</td>
 			    	<td class = "col" scope="col">
 			    		<div class="form-group">
-						    	<select class="form-control input_form">
-						    	</select>
+							<select class="form-control input_form" name="citta" th:required="required">
+								<option th:each="c: ${citta}" th:value="${c.id}" th:text="${c.nome} + ' ' + '(' + ${c.regione} + ')'">Città</option>
+							</select>
 						</div>
 					</td>
 					<td class = "col" scope="col">
@@ -81,7 +74,8 @@
 	
 	<div class= "scrollable">
 		<h2 class="text2">Risultati della ricerca:</h2>
-    	<a class="card btnHome" href="https://example.com/">Percorso A</a>
+    	<a class="card btnHome" th:each="percorso: ${percorsi}" th:text="${percorso.data} + ' - ' + ${percorso.km} + 'km - ' + ${percorso.dislivello} + 'm - ' + ${percorso.partenza} + ' - ' + ${percorso.arrivo} + ' - ' + ${percorso.ora_p} + ' - ' + ${percorso.ora_a}">Percorso A</a>
 	</div>
+	
 </body>
 </html>

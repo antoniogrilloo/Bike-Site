@@ -35,21 +35,33 @@ public class Percorso {
 
 	@Temporal(TemporalType.TIME)
 	private Time ora_p;
+	
 	@Temporal(TemporalType.TIME)
 	private Time ora_a;
 	
 	public Percorso() { }
 	
-	public Percorso(Date data, double km, double dislivello) {
+	public Percorso(Date data, Double km, Double dislivello) {
 		this.setData(data);
 		this.setKm(km);
 		this.setDislivello(dislivello);
 	}
-
+	
+	public boolean checkSelect(Long id1, Long id2) {
+		if(id1 == id2) {
+			return true;
+		}
+		return false;
+	}
+	
 	public Long getId() {
 		return id;
 	}
-
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Date getData() {
 		return data;
 	}
@@ -58,26 +70,28 @@ public class Percorso {
 		this.data = data;
 	}
 
-	public double getKm() {
+	public Double getKm() {
 		return km;
 	}
 
-	public void setKm(double km) {
+	public void setKm(Double km) {
 		this.km = km;
 	}
 
-	public double getDislivello() {
+	public Double getDislivello() {
 		return dislivello;
 	}
 
-	public void setDislivello(double dislivello) {
+	public void setDislivello(Double dislivello) {
 		this.dislivello = dislivello;
 	}
 
 	@Override
 	public String toString() {
-		return "Percorso [data=" + data + ", km=" + km
-				+ ", dislivello=" + dislivello + " partenza=" + ora_p + "]";
+		return "Percorso [id=" + id + ",data=" + data + ", km=" + km
+				+ ", dislivello=" + dislivello + ", partenza=" + partenza
+				+ ", arrivo=" + arrivo + ", ora partenza=" + ora_p
+				+", ora arrivo=" + ora_a + "]";
 	}
 	
 	public Citta getPartenza() {

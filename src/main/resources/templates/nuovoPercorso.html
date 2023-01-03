@@ -3,7 +3,7 @@
 <head>
 	<title>Nuovo Percorso</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<link rel="stylesheet" href="mystyle.css">
+	<link rel="stylesheet" href="/mystyle.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbarcc">
@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Ciclisti</a>
+              <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="bici.html">Bici</a>
@@ -26,34 +26,46 @@
     </nav>
 	
 	<div id="main">
-    	<h1 class="text">Fabio Nonnis</h1>
+		<h1 class="text" th:text="${ciclista.nome} +' '+ ${ciclista.cognome}">Nome Cognome</h1>
     </div>
     
     <h2 class="textSottoTit">Nuovo percorso:</h2>
 	
 	<div class="formModPercCard">
-		<form class="float elForm">
+		<form class="float elForm" th:action="@{/nuovoPercorso}" method="POST">
+			<input type="hidden" name="ciclista" th:value="${ciclista.id}">
 			<label class="text1Form">Data: </label>
 			<br>
-			<input type="date" class="form-control date elForm" name="dataPercorso" value="2018-07-22"min="2018-01-01" max="2018-12-31">
+			<input name="data" type="date" class="form-control date elForm" value="2018-07-22" min="1980-01-01" max="2022-12-31" th:required="required">
+			
 			<label class="text1Form">Lunghezza:</label>
 			<br>
-			<input type="text" class="form-control elForm" name="lunghezza" placeholder="Km">
+			<input name="km" type="number" class="form-control elForm" placeholder="Km" th:required="required" min="0">
+			
 			<label class="text1Form">Dislivello:</label>
 			<br>
-			<input type="text" class="form-control elForm" name="dislivello" placeholder="Km">
+			<input name="dislivello" type="number" class="form-control elForm" placeholder="m" th:required="required" min="0">
+			
 			<label class="text1Form">Partenza: </label>
 			<br>
-			<input type="text" class="form-control elForm" name="partenza" placeholder="Citta di partenza">
+			<select name="partenza" class="form-control input_form" th:required="required">
+				<option th:each="c: ${citta}" th:value="${c.id}" th:text="${c.nome} + ' ' + '(' + ${c.regione} + ')'">Partenza</option>
+			</select>
+			
 			<label class="text1Form">Arrivo:</label>
 			<br>
-			<input type="text" class="form-control elForm" name="arrivo" placeholder="Citta di arrivo">
+			<select name="arrivo" class="form-control input_form" th:required="required">
+				<option th:each="c: ${citta}" th:value="${c.id}" th:text="${c.nome} + ' ' + '(' + ${c.regione} + ')'">Arrivo</option>
+			</select>
+			 
 			<label class="text1Form">Ora partenza:</label>
 			<br>
-			<input type="text" class="form-control elForm" name="oraPartenza" placeholder="Ora di partenza">
+			<input  step="1" name="ora_p" type="time" class="form-control elForm" placeholder="Ora di partenza" th:required="required">
+			
 			<label class="text1Form">Ora arrivo:</label>
 			<br>
-			<input type="text" class="form-control elForm" name="oraArrivo" placeholder="Ora di arrivo">
+			<input step="1" name="ora_a" type="time" class="form-control elForm" placeholder="Ora di arrivo" th:required="required">
+			
 			<br>
 			<button type="submit" class="btn btn-primary submit">Crea</button>
 		</form>
