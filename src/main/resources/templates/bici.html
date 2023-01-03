@@ -32,11 +32,11 @@
 		<div class= "scrollable">
     		<a class="card btnHome" th:each="b: ${bici}">
     			<span th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}"> Bici </span>
-    			<span th:switch="${#strings.arraySplit(b.class, '.')[5]}">
-	    			<span th:case="'Gravel'" th:text="Gravel">Gravel</span>
-	    			<span th:case="'MountainBike'" th:text="MountainBike">MB</span>
-	    			<span th:case="'Corsa'" th:text="Corsa">C</span>
-    			</span>
+	    			<span  class="textPerc" th:switch="${#strings.arraySplit(b.class, '.')[5]}">
+		    			<span th:case="'Gravel'" th:text="Gravel + ':   Appendici: ' + ${(b.appendici) ? 'Sì' : 'No'} + ' | Borse: ' + ${(b.borse)  ? 'Sì' : 'No'}">Gravel</span>
+		    			<span th:case="'MountainBike'" th:text="MountainBike + ':   Forcella: ' + ${b.forcella} + ' | Ammortizzatore: ' + ${b.ammortizzatore}">MB</span>
+		    			<span th:case="'Corsa'" th:text="Corsa + ':   Misuratore: ' + ${b.misuratore} + ' | Ruote: ' + ${b.ruote} + ' cm'">C</span>
+	    		</span>
     		</a>
 		</div>
 </body>
