@@ -19,7 +19,7 @@
               <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bici.html">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
             </li>
           </ul>
         </div>
@@ -35,39 +35,82 @@
     
     <h2 class="text1">Disciplina</h2>
     <div class="formCard">
-		<form>
-			<div class="form-group hidden">
-		   		<label for=""></label>
-		    	<input type="hidden" class="form-control input_form" id="form_ID" aria-describedby="" placeholder="">
-	  		</div>
+		<form method="POST" th:action="@{/ciclista/cambiaDisciplina/{id}(id = ${ciclista.id})}">
 	  		<div class="form-group">
-	    		<select class="form-control input_form">
-	    			<option>STRADISTA</option>
-	    			<option>RIDER</option>
-	    			<option>VIAGGIATORE</option>
+	    		<select name="nuovaDisciplina" class="form-control input_form">
+	    			<option value="STRADISTA" th:selected="${ciclista.isSelected('STRADISTA')}">STRADISTA</option> <!-- th:selected="${ciclista.isSelected()}" https://stackoverflow.com/questions/32210900/default-value-in-drop-down-menu-in-thymeleaf-->
+	    			<option value="RIDER" th:selected="${ciclista.isSelected('RIDER')}">RIDER</option>
+	    			<option value="VIAGGIATORE" th:selected="${ciclista.isSelected('VIAGGIATORE')}">VIAGGIATORE</option>
 	    		</select>
 	  		</div>
-	  		<button type="submit" class="btn btn-primary submitDisc"><b>Submit</b></button>
+	  		<button type="submit" class="btn btn-primary submitDisc"><b>Modifica</b></button>
 		</form>
 	</div>
 
-    <h2 class="text1">Sfide <a type="button" class="btn btn-primary noFog" href="nuovaSfida.html"><b>+</b></a></h2>
-	<div class= "scrollable" th:each="sfidante: ${ciclista.sfida}">
-		<span class="child-s1"><a class="card btnHome" th:text="${sfidante.nome} + ' ' + ${sfidante.cognome}">Nome Cognome</a></span>
-		<span class="child-s2"><a class="card btnHomeRemove remove" href="/eliminaSfidante/1/2"><i class="fa-solid fa-trash"></i></a></span>
-	</div>
-	
-	<h2 class="text1">Percorsi <a type="button" class="btn btn-primary noFog" th:href="@{/ciclista/{id}/nuovoPercorso(id = ${ciclista.id})}"><b>+</b></a></h2>
-	<div class= "scrollable" th:each="percorso: ${ciclista.percorso}">
-		<div class="child-s3"><a class="card btnHome" href="https://example.com/" th:text="${percorso.partenza} + ' - ' + ${percorso.arrivo}">Percorso A</a></div>
-		<div class="child-s4"><a class="card btnHomeRemove change" th:href="@{/ciclista/{idCic}/modificaPercorso/{idPerc}(idCic = ${ciclista.id} , idPerc = ${percorso.id})}"><i class="fa-solid fa-pen-to-square"></i></a></div>
-		<div class="child-s4"><a class="card btnHomeRemove remove" ><i class="fa-solid fa-trash"></i></a></div>
-	</div>		
-		
-	<h2 class="text1">Bici <a type="button" class="btn btn-primary noFog" href="associaBici.html"><b>+</b></a></h2>
+    <h2 class="text1">Sfide <a type="button" class="btn btn-primary noFog" th:href="@{/ciclista/nuovaSfida/{id}(id = ${ciclista.id})}"><b>+</b></a></h2>
 	<div class= "scrollable">
-		<div class="child-s1"><a class="card btnHome" href="https://example.com/" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Bici Esempio</a></div>
-		<div class="child-s2"><a class="card btnHomeRemove remove" href="https://example.com/"><i class="fa-solid fa-trash"></i></a></div>	
+		<table class="tabCic" th:each="sfidante: ${ciclista.sfida}">
+			<tr>
+				<td class="tdSfida">
+					<div class="card btnHome">
+						<div th:text="${sfidante.nome} + ' ' + ${sfidante.cognome}">Nome Cognome</div>
+						<div class="textPerc" th:text="${sfidante.nascita}">Dati percorso</div>
+					</div>
+				</td>
+				<td class="tdForm">
+					<form method="POST" class="deleteSub" th:action="@{/ciclista/eliminaSfida/{id}(id = ${ciclista.id})}">
+						<input type="hidden" th:value="${sfidante.id}" name="idSfidante">
+						<button class="deleteButt" type="submit"><i class="fa-solid fa-trash"></i></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<h2 class="text1">Percorsi <a type="button" class="btn btn-primary noFog" th:href="@{/ciclista/{id}/nuovoPercorso(id = ${ciclista.id})}"><b>+</b></a></h2>
+	<div class= "scrollable">
+		<table class="tabCic" th:each="percorso: ${ciclista.percorso}">
+			<tr>
+				<td class="tdPercorso">
+					<div class="card btnHome">
+						<div th:text="${percorso.partenza} + ' - ' + ${percorso.arrivo}"></div>
+						<div class="textPerc" th:text="'Data: ' + ${percorso.data} + ' | Lunghezza: ' + ${percorso.km} + ' | Dislivello: ' + ${percorso.dislivello} + ' | Ora partenza: ' + ${percorso.ora_p} + ' | Ora arrivo: ' + ${percorso.ora_a}">Dati percorso</div>
+					</div>
+				</td>
+				<td class="tdForm">
+					<form method="GET" th:action="@{/ciclista/{idCic}/modificaPercorso/{idPerc}(idCic = ${ciclista.id} , idPerc = ${percorso.id})}">
+						<button class="modifyButt" type="submit"><i class="fa-solid fa-pen-to-square"></i></button>
+					</form>
+
+				</td>
+				<td class="tdForm">
+					<form method="POST" th:action="@{/ciclista/eliminaPercorso/{id}(id = ${ciclista.id})}">
+						<input type="hidden" th:value="${percorso.id}" name="idPercorso">
+						<button  class="deleteButt" type="submit"><i class="fa-solid fa-trash"></i></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+		
+	<h2 class="text1">Bici <a type="button" class="btn btn-primary noFog" th:href="@{/associaBici/{id}(id = ${ciclista.id})}"><b>+</b></a></h2>
+	<div class= "scrollable">
+
+	<table class="tabCic" th:each="bici: ${ciclista.bici}">
+			<tr>
+				<td class="tdCic">
+				<div class="card btnHome">
+					<div th:text="${bici.marca} + ' - ' + ${bici.modello} + ' - ' + ${bici.anno}">Marca Modello Anno</div>
+					<div></div>
+				</div>
+				</td>
+				<td class="tdForm">
+					<form method="POST" class="deleteSub" th:action="@{/ciclista/eliminaBici/{id}(id = ${ciclista.id})}">
+						<input type="hidden" th:value="${bici.id}" name="idBici">
+						<button class="deleteButt" type="submit"><i class="fa-solid fa-trash"></i></button>
+					</form>
+				</td>
+			</tr>
+	</table>
 	</div>
 </body>
 </html>

@@ -18,7 +18,7 @@
               <a class="nav-link active" aria-current="page" href="">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bici.html">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
             </li>
           </ul>
         </div>
@@ -27,12 +27,12 @@
     
     <div id="main">
     	<h1 class="text">Ciclisti</h1>
-    	<a type="button" class="btn btn-primary bott" href="nuovoCiclista.html">Nuovo</a>
+    	<a type="button" class="btn btn-primary bott" href="/ciclista/nuovoCiclista">Nuovo</a>
     	<a type="button" class="btn btn-primary bott" th:href="@{/ricercaPercorso}">Cerca percorso</a>
     </div>
     
 	<div class= "scrollable">
-		<a class="card btnHome" th:href="@{/ciclista/{id}(id = ${ciclista.id})}" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Nome Cognome</a>
+		<a class="card btnHome" th:href="@{/ciclista/{id}(id = ${ciclista.id})}" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome} + ' (' + ${ciclista.nascita} + ')'">Nome Cognome</a>
 	</div>
 	
 </body>
