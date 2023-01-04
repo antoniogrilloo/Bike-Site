@@ -129,6 +129,13 @@
         text-shadow:  0 4px 4px #101018;
         padding-left: 10%;
 	}
+	
+	.textNorm{
+		text-transform: none;
+        font-size:20px;
+        padding-left: 10%;
+	}
+	
 	.text1Form{
 		text-align: left;
 		text-transform: uppercase;

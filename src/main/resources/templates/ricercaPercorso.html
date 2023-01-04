@@ -3,7 +3,7 @@
 <head>
 	<title>Ricerca Percorso</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<link rel="stylesheet" href="mystyle.css">
+	<link rel="stylesheet" href="/mystyle.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbarcc">
@@ -31,41 +31,42 @@
     <div id="main">
     	<h1 class="text">Ricerca Percorso</h1>
     </div>
-    
-    
+    <div>
+    	<p class="text textNorm">Selezionare nome del ciclista e città (di partenza o arrivo) del percorso che si vuole cercare</p>
+    </div>
     <div class="formCardRicPerc">
 		<form class="float" th:action="@{/ricercaPercorso}" method="POST">
 			<table>
 				<tr>
-			        <td class = "col" scope="col">
+			        <td class="col" scope="col">
 			        	<div class="form-group">
 					    	<h2 class="text1Form">Nome</h2>
 					    </div>
 					</td>
-			    	<td class = "col" scope="col">
+			    	<td class="col" scope="col">
 			    		<div class="form-group">
 							<h2 class="text1Form">Citta</h2>
 						</div>
 					</td>
-					<td class = "col" scope="col">
+					<td class="col" scope="col">
 					</td>	
 			  	</tr>
 			  	<tr>
-			  		<td class = "col" scope="col">
+			  		<td class="col" scope="col">
 			        	<div class="form-group">
 					    	<select class="form-control input_form" name="ciclista" th:required="required">
 								<option th:each="c: ${ciclisti}" th:value="${c.id}" th:text="${c.nome} + ' ' + ${c.cognome}">Ciclista</option>
 							</select>
 					  	</div>
 					</td>
-			    	<td class = "col" scope="col">
+			    	<td class="col" scope="col">
 			    		<div class="form-group">
 							<select class="form-control input_form" name="citta" th:required="required">
 								<option th:each="c: ${citta}" th:value="${c.id}" th:text="${c.nome} + ' ' + '(' + ${c.regione} + ')'">Città</option>
 							</select>
 						</div>
 					</td>
-					<td class = "col" scope="col">
+					<td class="col" scope="col">
 						<button type="submit" class="btn btn-primary submit">Cerca</button>
 					</td>	
 			  	</tr>
@@ -75,9 +76,16 @@
 	</div>
 	
 	
-	<div class= "scrollable">
+	<div class="scrollable">
 		<h2 class="text2">Risultati della ricerca:</h2>
-    	<a class="card btnHome" th:each="percorso: ${percorsi}" th:text="${percorso.data} + ' - ' + ${percorso.km} + 'km - ' + ${percorso.dislivello} + 'm - ' + ${percorso.partenza} + ' - ' + ${percorso.arrivo} + ' - ' + ${percorso.ora_p} + ' - ' + ${percorso.ora_a}">Percorso A</a>
+    	<!-- <a class="card btnHome" th:each="percorso: ${percorsi}" th:text="${percorso.data} + ' - ' + ${percorso.km} + 'km - ' + ${percorso.dislivello} + 'm - ' + ${percorso.partenza} + ' - ' + ${percorso.arrivo} + ' - ' + ${percorso.ora_p} + ' - ' + ${percorso.ora_a}">Percorso A</a> -->
+
+		<div class="card btnHome" th:each="percorso: ${percorsi}">
+			<div th:text="${percorso.partenza} + ' - ' + ${percorso.arrivo}"></div>
+			<div class="textPerc" th:text="'Data: ' + ${percorso.data} + ' | Lunghezza: ' + ${percorso.km} + ' | Dislivello: ' + ${percorso.dislivello} + ' | Ora partenza: ' + ${percorso.ora_p} + ' | Ora arrivo: ' + ${percorso.ora_a}">Dati percorso</div>
+		</div>
+	
+	
 	</div>
 	
 </body>
