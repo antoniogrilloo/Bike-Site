@@ -19,7 +19,10 @@
               <a class="nav-link active" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="bici.html">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
             </li>
           </ul>
         </div>
@@ -34,12 +37,20 @@
     <div class="formCard">
 		<form method="POST">
 	  		<div class="form-group">
-    			<select class="form-control input_form" name = "idSfidante">
+    			<select class="form-control input_form" name = "idSfidante" th:required="required">
 	    			<option th:each="ciclista: ${ciclisti}" th:value="${ciclista.id}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Sfidante</option>
 	    		</select>
   			</div>
 	  		<button type="submit" class="btn btn-primary submitDisc"><b>Submit</b></button>
 		</form>
 	</div>
+	
+	<script type="text/javascript">
+		var s = document.querySelector("[name=idSfidante]");
+		s.addEventListener("invalid", function(){
+			this.setCustomValidity('Sono già stati inseriti tutti gli sfidanti possibili');
+		});
+	</script>
+	
 </body>
 </html>

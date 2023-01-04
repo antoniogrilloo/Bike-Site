@@ -20,6 +20,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/bici">Bici</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -37,7 +40,7 @@
 		    	<input type="hidden" class="form-control input_form" id="form_ID" placeholder="">
 	  		</div>
 	  		<div class="form-group">
-    			<select class="form-control input_form" name = "idBici">
+    			<select class="form-control input_form" name = "idBici" th:required="required">
 	    			<option th:each="b: ${bici}" th:value="${b.id}" th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}">Bici</option>
 	    		</select>
   			</div>
@@ -45,6 +48,12 @@
 		</form>
 	</div>
 	
+	<script type="text/javascript">
+		var s = document.querySelector("[name=idBici]");
+		s.addEventListener("invalid", function(){
+			this.setCustomValidity('Sono già state inserite tutte le bici possibili');
+		});
+	</script>
 
 
 </body>

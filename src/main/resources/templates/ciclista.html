@@ -21,6 +21,9 @@
             <li class="nav-item">
               <a class="nav-link" href="/bici">Bici</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -99,17 +102,21 @@
 	<h2 class="text1">Bici <a type="button" class="btn btn-primary noFog" th:href="@{/associaBici/{id}(id = ${ciclista.id})}"><b>+</b></a></h2>
 	<div class= "scrollable">
 
-	<table class="tabCic" th:each="bici: ${ciclista.bici}">
+	<table class="tabCic" th:each="b: ${ciclista.bici}">
 			<tr>
 				<td class="tdCic">
 				<div class="card btnHome">
-					<div th:text="${bici.marca} + ' - ' + ${bici.modello} + ' - ' + ${bici.anno}">Marca Modello Anno</div>
-					<div></div>
+					<span th:text="${b.marca} + ' ' + ${b.modello} + ' ' + ${b.anno}"> Bici </span>
+	    			<span  class="textPerc" th:switch="${#strings.arraySplit(b.class, '.')[5]}">
+		    			<span th:case="'Gravel'" th:text="Gravel + ':   Appendici: ' + ${(b.appendici) ? 'Sì' : 'No'} + ' | Borse: ' + ${(b.borse)  ? 'Sì' : 'No'}">Gravel</span>
+		    			<span th:case="'MountainBike'" th:text="MountainBike + ':   Forcella: ' + ${b.forcella} + ' | Ammortizzatore: ' + ${b.ammortizzatore}">MB</span>
+		    			<span th:case="'Corsa'" th:text="Corsa + ':   Misuratore: ' + ${b.misuratore} + ' | Ruote: ' + ${b.ruote} + ' cm'">C</span>
+	    		</span>
 				</div>
 				</td>
 				<td class="tdForm">
 					<form method="POST" class="deleteSub" th:action="@{/ciclista/eliminaBici/{id}(id = ${ciclista.id})}">
-						<input type="hidden" th:value="${bici.id}" name="idBici">
+						<input type="hidden" th:value="${b.id}" name="idBici">
 						<button class="deleteButt" type="submit"><i class="fa-solid fa-trash"></i></button>
 					</form>
 				</td>
