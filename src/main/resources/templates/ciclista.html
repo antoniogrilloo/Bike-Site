@@ -35,6 +35,7 @@
     
     <h2 class="text1">Disciplina</h2>
     <div class="formCard">
+    	<p class="textLeft">Se si vuole modificare la disciplina, selezionarla dalla seguente lista e confermare con 'Modifica'.</p>
 		<form method="POST" th:action="@{/ciclista/cambiaDisciplina/{id}(id = ${ciclista.id})}">
 	  		<div class="form-group">
 	    		<select name="nuovaDisciplina" class="form-control input_form">
@@ -42,6 +43,9 @@
 	    			<option value="RIDER" th:selected="${ciclista.isSelected('RIDER')}">RIDER</option>
 	    			<option value="VIAGGIATORE" th:selected="${ciclista.isSelected('VIAGGIATORE')}">VIAGGIATORE</option>
 	    		</select>
+	  		</div>
+	  		<div th:if="${confirm}">
+	  			<p class="textLeft" style="color:green">Modifica avvenuta!</p>
 	  		</div>
 	  		<button type="submit" class="btn btn-primary submitDisc"><b>Modifica</b></button>
 		</form>

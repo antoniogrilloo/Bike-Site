@@ -44,11 +44,29 @@ public class CiclistaController {
 		ModelAndView maw = new ModelAndView();
 		Optional<Ciclista> c = this.ciclistaRepository.findById(idCiclista);
 		if(c.isPresent()){
-			maw.addObject("ciclista", c.get());
-			maw.setViewName("ciclista");
-			return maw;
+			maw = buildInfoCiclistaPage(c.get(), false);
 		}
-		return null;
+		return maw;
+	}
+	
+	public ModelAndView buildInfoCiclistaPage(Ciclista c, Boolean confirm) {
+		ModelAndView maw = new ModelAndView();
+		maw.addObject("ciclista", c);
+		maw.addObject("confirm", confirm);
+		maw.setViewName("ciclista");
+		return maw;
+	}
+	
+	@PostMapping("/ciclista/cambiaDisciplina/{idCiclista}")
+	public ModelAndView cambiaDisciplina(@PathVariable Long idCiclista, @RequestParam String nuovaDisciplina) {
+		ModelAndView maw = new ModelAndView();
+		Optional<Ciclista> ciclista = this.ciclistaRepository.findById(idCiclista);
+		if(ciclista.isPresent()) {
+			ciclista.get().setDisciplina(Disciplina.valueOf(nuovaDisciplina));
+			ciclistaRepository.save(ciclista.get());
+			maw = buildInfoCiclistaPage(ciclista.get(), true);
+		}
+		return maw;
 	}
 	
 	@GetMapping("/ciclista/nuovoCiclista")
@@ -62,16 +80,6 @@ public class CiclistaController {
 	public RedirectView nuovoCiclistaCreato(Ciclista ciclista) {
 		ciclistaRepository.save(ciclista);
 		return new RedirectView("/");
-	}
-	
-	@PostMapping("/ciclista/cambiaDisciplina/{idCiclista}")
-	public RedirectView cambiaDiscipliina(@PathVariable Long idCiclista, @RequestParam String nuovaDisciplina) {
-		Optional<Ciclista> ciclista = this.ciclistaRepository.findById(idCiclista);
-		if(ciclista.isPresent()) {
-			ciclista.get().setDisciplina(Disciplina.valueOf(nuovaDisciplina));
-			ciclistaRepository.save(ciclista.get());
-		}
-		return new RedirectView("/ciclista/" + idCiclista);
 	}
 	
 	@PostMapping("/ciclista/eliminaSfida/{idCiclista}")
