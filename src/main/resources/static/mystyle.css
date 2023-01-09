@@ -190,20 +190,6 @@
 		text-decoration: none;
 	}
 	
-	a.card.remove{
-		background-color: #dc3545;
-    	border-color: #dc3545;
-    	color: #f5f5f5;
-		text-decoration: none;
-	}
-	
-	a.card.change{
-		background-color: #6c757d;
-    	border-color: #6c757d;
-    	color: #f5f5f5;
-		text-decoration: none;
-	}
-	
 	
 	a{
 		color:#000000;
@@ -213,10 +199,6 @@
 	
 	.bott{
 		margin-left:3%;
-	}
-	
-	.my_form{
-		padding-right: 70%;
 	}
 	
 	.hidden{
@@ -243,41 +225,6 @@
 		padding:0 15px 0 0;
 	}
 	
-	
-	
-	
-	.child-s1{
-		display:inline-block;
-		width:90%;
-		font-family: verdana;
-        font-weight: 700;	
-	}
-	
-	.child-s2{
-		display:inline-block;
-		width:8%;
-		height:100%;
-		font-family: verdana;
-        font-weight: 700;
-	}
-	
-	.child-s3{
-		display:inline-block;
-		width:82%;
-		font-family: verdana;
-        font-weight: 700;
-		
-	}
-	
-	.child-s4{
-		display:inline-block;
-		width:8%;
-		height:100%;
-		font-family: verdana;
-        font-weight: 700;
-	
-	}
-	
 	.textLeft{
 		text-align: left;
 	}
@@ -288,18 +235,12 @@
 		margin-bottom:10px;
 	}
 	
-	.card.btnHomeRemove{
-		padding-top:26px;
-		padding-bottom:26px;
-	}
-	
 	.elForm{
 		width: 340px;
 		text-align:left;
 	}
 	
-	.error{
-		margin-left: 3%;
-		margin-right: 3%; 
+	.textDesc{
+		color: white;
 	}
 	

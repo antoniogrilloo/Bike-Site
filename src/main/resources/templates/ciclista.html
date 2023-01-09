@@ -36,7 +36,7 @@
     <h2 class="textBday">Nato il: <span th:text="${ciclista.nascita}">04/08/2000</span></h2>
 
     
-    <h2 class="text1">Disciplina</h2>
+    <h2 class="text1">Disciplina: <span th:text="${ciclista.disciplina}">RIDER</span></h2>
     <div class="formCard">
     	<p class="textLeft">Se si vuole modificare la disciplina, selezionarla dalla seguente lista e confermare con 'Modifica'.</p>
 		<form method="POST" th:action="@{/ciclista/cambiaDisciplina/{id}(id = ${ciclista.id})}">

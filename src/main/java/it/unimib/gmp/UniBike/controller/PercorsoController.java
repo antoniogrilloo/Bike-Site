@@ -35,11 +35,13 @@ public class PercorsoController {
 	
 	public ModelAndView creaMAVRicercaPercorso(List<Percorso> percorsi,
 											   List<Citta> citta,
-											   List<Ciclista> ciclisti) {
+											   List<Ciclista> ciclisti,
+											   String descrizione) {
 		ModelAndView maw = new ModelAndView();
 		maw.addObject("percorsi", percorsi);
 		maw.addObject("citta", citta);
 		maw.addObject("ciclisti", ciclisti);
+		maw.addObject("descrizione", descrizione);
 		maw.setViewName("ricercaPercorso");
 		return maw;
 	}
@@ -49,7 +51,8 @@ public class PercorsoController {
 		List<Percorso> percorsi = percorsoRepository.findAll();
 		List<Citta> citta = this.cittaRepository.findAll();
 		List<Ciclista> ciclisti = this.ciclistaRepository.findAll();
-		return creaMAVRicercaPercorso(percorsi, citta, ciclisti);
+		String descrizione = "Tutti i percorsi disponibili";
+		return creaMAVRicercaPercorso(percorsi, citta, ciclisti, descrizione);
 	}
 	
 	@PostMapping("/ricercaPercorso")
@@ -59,11 +62,12 @@ public class PercorsoController {
 		List<Percorso> outputPercorsi = new ArrayList<>();
 		List<Citta> tutteCitta = this.cittaRepository.findAll();
 		List<Ciclista> ciclisti = this.ciclistaRepository.findAll();
+		String descrizione = "Ricerca dei percorsi effettuati da " + ciclista.toString() + ", che partono o arrivano da " + citta.toString();
 		for(Percorso p: percorsi) {
 			if(p.getPartenza().equals(citta) || p.getArrivo().equals(citta))
 				outputPercorsi.add(p);
 		}
-		return creaMAVRicercaPercorso(outputPercorsi, tutteCitta, ciclisti);
+		return creaMAVRicercaPercorso(outputPercorsi, tutteCitta, ciclisti, descrizione);
 	}
 	
 	@GetMapping("/ciclista/{id}/nuovoPercorso")

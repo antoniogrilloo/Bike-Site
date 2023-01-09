@@ -190,8 +190,7 @@ public class Ciclista {
 
 	@Override
 	public String toString() {
-		return "Ciclista [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", nascita=" + nascita
-				+ ", disciplina=" + disciplina + "]";
+		return nome + " " + cognome + " (" + nascita + ")";
 	}
 
 	@Override
