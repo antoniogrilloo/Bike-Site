@@ -38,7 +38,7 @@
 		<form method="POST">
 	  		<div class="form-group">
     			<select class="form-control input_form" name = "idSfidante" th:required="required">
-	    			<option th:each="ciclista: ${ciclisti}" th:value="${ciclista.id}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome}">Sfidante</option>
+	    			<option th:each="ciclista: ${ciclisti}" th:value="${ciclista.id}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome} + ' (' + ${ciclista.nascita} + ')'">Sfidante</option>
 	    		</select>
   			</div>
 	  		<button type="submit" class="btn btn-primary submitDisc"><b>Submit</b></button>

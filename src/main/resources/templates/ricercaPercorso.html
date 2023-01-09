@@ -55,7 +55,7 @@
 			  		<td class = "col" scope="col">
 			        	<div class="form-group">
 					    	<select class="form-control input_form" name="ciclista" th:required="required">
-								<option th:each="c: ${ciclisti}" th:value="${c.id}" th:text="${c.nome} + ' ' + ${c.cognome}">Ciclista</option>
+								<option th:each="c: ${ciclisti}" th:value="${c.id}" th:text="${c.nome} + ' ' + ${c.cognome} + ' (' + ${c.nascita} +')'">Ciclista</option>
 							</select>
 					  	</div>
 					</td>
