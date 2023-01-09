@@ -1,6 +1,5 @@
 package it.unimib.gmp.UniBike.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,7 +75,6 @@ public class BiciController {
 	public RedirectView associaBici(@PathVariable("idCiclista") Long idCiclista, @RequestParam Long idBici) {
 		Optional<Ciclista> c = this.ciclistaRepository.findById(idCiclista);
 		Optional<Bici> b = bici.findById(idBici);
-		//Gestione eccezione
 		if(c.isPresent() && b.isPresent()) {
 			c.get().addBici(b.get());
 			this.ciclistaRepository.save(c.get());

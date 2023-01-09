@@ -60,8 +60,8 @@ public class AggiungiBiciForm {
 	}
 	
 	private Gravel getGravel() throws AggiungiBiciFormException {
-		if(appendici == null || borse == null)
-			throw new AggiungiBiciFormException();
+		appendici = (appendici != null);
+		borse = (borse != null);
 		return new Gravel(marca, modello, anno, appendici, borse);
 	}
 	

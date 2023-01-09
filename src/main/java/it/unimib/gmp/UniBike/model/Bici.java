@@ -37,7 +37,6 @@ public class Bici {
 	private Long id;
 	private String marca;
 	private String modello;
-	//@Temporal(TemporalType.DATE)
 	private Year anno;
 	
 	@ManyToMany(

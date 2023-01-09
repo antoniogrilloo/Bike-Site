@@ -33,11 +33,10 @@ public class PercorsoController {
 		this.cittaRepository = cittar;
 	}
 	
-	public ModelAndView creaMAVRicercaPercorso(List<Percorso> percorsi,
-											   List<Citta> citta,
-											   List<Ciclista> ciclisti,
-											   String descrizione) {
+	public ModelAndView creaMAVRicercaPercorso(List<Percorso> percorsi, String descrizione) {
 		ModelAndView maw = new ModelAndView();
+		List<Citta> citta = this.cittaRepository.findAll();
+		List<Ciclista> ciclisti = this.ciclistaRepository.findAll();
 		maw.addObject("percorsi", percorsi);
 		maw.addObject("citta", citta);
 		maw.addObject("ciclisti", ciclisti);
@@ -49,25 +48,16 @@ public class PercorsoController {
 	@GetMapping("/ricercaPercorso")
 	public ModelAndView paginaRicercaPercorso() {
 		List<Percorso> percorsi = percorsoRepository.findAll();
-		List<Citta> citta = this.cittaRepository.findAll();
-		List<Ciclista> ciclisti = this.ciclistaRepository.findAll();
 		String descrizione = "Tutti i percorsi disponibili";
-		return creaMAVRicercaPercorso(percorsi, citta, ciclisti, descrizione);
+		return creaMAVRicercaPercorso(percorsi, descrizione);
 	}
 	
 	@PostMapping("/ricercaPercorso")
 	public ModelAndView ricercaPercorso(@RequestParam Ciclista ciclista,
 										@RequestParam Citta citta) {
-		Collection<Percorso> percorsi = ciclista.getPercorso();
-		List<Percorso> outputPercorsi = new ArrayList<>();
-		List<Citta> tutteCitta = this.cittaRepository.findAll();
-		List<Ciclista> ciclisti = this.ciclistaRepository.findAll();
+		List<Percorso> outputPercorsi = (List<Percorso>) this.percorsoRepository.searchByCittaECiclista(ciclista.getId(), citta.getNome());
 		String descrizione = "Ricerca dei percorsi effettuati da " + ciclista.toString() + ", che partono o arrivano da " + citta.toString();
-		for(Percorso p: percorsi) {
-			if(p.getPartenza().equals(citta) || p.getArrivo().equals(citta))
-				outputPercorsi.add(p);
-		}
-		return creaMAVRicercaPercorso(outputPercorsi, tutteCitta, ciclisti, descrizione);
+		return creaMAVRicercaPercorso(outputPercorsi);
 	}
 	
 	@GetMapping("/ciclista/{id}/nuovoPercorso")
