@@ -1,7 +1,5 @@
 package it.unimib.gmp.UniBike.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,7 +55,7 @@ public class PercorsoController {
 										@RequestParam Citta citta) {
 		List<Percorso> outputPercorsi = (List<Percorso>) this.percorsoRepository.searchByCittaECiclista(ciclista.getId(), citta.getNome());
 		String descrizione = "Ricerca dei percorsi effettuati da " + ciclista.toString() + ", che partono o arrivano da " + citta.toString();
-		return creaMAVRicercaPercorso(outputPercorsi);
+		return creaMAVRicercaPercorso(outputPercorsi, descrizione);
 	}
 	
 	@GetMapping("/ciclista/{id}/nuovoPercorso")
