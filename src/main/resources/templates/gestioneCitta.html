@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Ciclisti</a>
+              <a class="nav-link" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/bici}">Bici</a>
@@ -24,7 +24,7 @@
               <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/gestioneCitta}">Gestione citta</a>
+              <a class="nav-link active" th:href="@{/gestioneCitta}">Gestione citta</a>
             </li>
           </ul>
         </div>
@@ -32,12 +32,14 @@
     </nav>
     
     <div id="main">
-    	<h1 class="text">Ciclisti</h1>
-    	<a type="button" class="btn btn-primary bott" href="/ciclista/nuovoCiclista">Nuovo</a>
+    	<h1 class="text">Citta</h1>
+    	<a type="button" class="btn btn-primary bott" th:href="@{/gestioneCitta/nuovaCitta}">Nuova</a>
     </div>
     
 	<div class= "scrollable">
-		<a class="card btnHome" th:href="@{/ciclista/{id}(id = ${ciclista.id})}" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome} + ' (' + ${ciclista.nascita} + ')'">Nome Cognome</a>
+		<a class="card btnHome" th:each="c: ${citta}">
+			<span th:text="${c.nome} + ' (' + ${c.regione} + ')'">Regione</span>
+		</a>
 	</div>
 	
 </body>

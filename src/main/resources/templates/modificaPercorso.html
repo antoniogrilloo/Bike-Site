@@ -24,6 +24,9 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gestioneCitta}">Gestione citta</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,7 +43,7 @@
 			<input type="hidden" name="ciclista" th:value="${ciclista.id}">
 			<label class="text1Form">Data: </label>
 			<br>
-			<input name="data" type="date" class="form-control date elForm" th:value="${vecchioPerc.data}" min="1980-01-01" max="2022-12-31" th:required="required">
+			<input name="data" type="date" class="form-control date elForm" th:value="${vecchioPerc.data}" min="1900-01-01" max="2100-12-31" th:required="required">
 			
 			<label class="text1Form">Lunghezza:</label>
 			<br>

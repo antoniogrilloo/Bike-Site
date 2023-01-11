@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Ciclisti</title>
+	<title>Nuovo Ciclista</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<link rel="stylesheet" href="mystyle.css">
+	<link rel="stylesheet" href="/mystyle.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light navbarcc">
@@ -15,30 +15,37 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="">Ciclisti</a>
+              <a class="nav-link" aria-current="page" href="/">Ciclisti</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/bici}">Bici</a>
+              <a class="nav-link" href="/bici">Bici</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/gestioneCitta}">Gestione citta</a>
+              <a class="nav-link active" th:href="@{/gestioneCitta}">Gestione citta</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    
-    <div id="main">
-    	<h1 class="text">Ciclisti</h1>
-    	<a type="button" class="btn btn-primary bott" href="/ciclista/nuovoCiclista">Nuovo</a>
-    </div>
-    
-	<div class= "scrollable">
-		<a class="card btnHome" th:href="@{/ciclista/{id}(id = ${ciclista.id})}" th:each="ciclista: ${ciclisti}" th:text="${ciclista.nome} + ' ' + ${ciclista.cognome} + ' (' + ${ciclista.nascita} + ')'">Nome Cognome</a>
-	</div>
 	
+	<div id="main">
+    	<h1 class="text">Nuova Citta</h1>
+    </div>
+	
+	<div class="formModPercCard">
+		<form th:action="@{/gestioneCitta/aggiungiCitta}" class="float elForm" method="POST">
+			<label class="text1Form">Nome: </label>
+			<br>
+			<input type="text" class="form-control elForm" name="nome" th:required="required" placeholder="Nome">
+			<label class="text1Form">Regione:</label>
+			<br>
+			<input type="text" class="form-control elForm" name="regione" th:required="required" placeholder="Regione">
+			<br>
+			<button type="submit" class="btn btn-primary submit">Crea</button>
+		</form>
+	</div>
 </body>
 </html>

@@ -23,6 +23,9 @@
             <li class="nav-item">
               <a class="nav-link" th:href="@{/ricercaPercorso}">Cerca percorso</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/gestioneCitta}">Gestione citta</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -49,7 +52,7 @@
 	    	</select>
 			<label class="text1Form">Data: </label>
 			<br>
-			<input type="date" class="form-control date elForm" name="nascita" th:required="required" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+			<input type="date" class="form-control date elForm" name="nascita" th:required="required" min="1900-01-01" max="2100-12-31">
 			<br>
 			<button type="submit" class="btn btn-primary submit">Crea</button>
 		</form>
