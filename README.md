@@ -8,7 +8,7 @@ Gruppo GMP:
 Link repository: https://gitlab.com/a.grillo22/2022_assignment3_gmp.git
 
 ## Installazione ed esecuzione
-Eseguire queste istruzioni all'interno della cartella root del progetto.
+Eseguire queste istruzioni all'interno della cartella root del progetto. Si raccomanda di avere un JDK e che sia installato correttamente.
 
 ### Su Windows
 
